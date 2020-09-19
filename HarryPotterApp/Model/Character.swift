@@ -22,7 +22,7 @@ enum BloodType {
 
 struct Character {
     var name: String
-    var role: String
+    var role: String?
     var house: House?
     var bloodType: BloodType
 }

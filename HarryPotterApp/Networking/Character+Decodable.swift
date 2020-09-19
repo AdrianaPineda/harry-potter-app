@@ -51,9 +51,9 @@ extension Character: Decodable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)
-        role = try values.decode(String.self, forKey: .role)
+        role = try values.decodeIfPresent(String.self, forKey: .role)
 
-        let houseAsString = try values.decode(String.self, forKey: .house)
+        let houseAsString = try values.decodeIfPresent(String.self, forKey: .house)
         house = House.from(string: houseAsString)
 
         let bloodTypeAsString = try values.decode(String.self, forKey: .bloodType)

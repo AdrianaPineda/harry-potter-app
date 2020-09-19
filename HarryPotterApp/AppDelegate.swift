@@ -14,7 +14,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = CharacterListViewController()
+        let apiClient = HarryPotterApiClient(baseUrl: "https://www.potterapi.com/v1",
+                                             apiKey: "REPLACE_ME")
+        let viewModel = CharacterListViewModel(apiClient: apiClient)
+        let characterList = CharacterListViewController()
+        characterList.characterListViewModel = viewModel
+        window.rootViewController = characterList
         window.makeKeyAndVisible()
         self.window = window
         return true
