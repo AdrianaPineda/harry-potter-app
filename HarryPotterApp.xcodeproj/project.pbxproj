@@ -19,6 +19,7 @@
 		01A787AF2515F22D00210B1A /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A787AE2515F22D00210B1A /* Character.swift */; };
 		01A787B22515F33600210B1A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 01A787B12515F33600210B1A /* Alamofire */; };
 		01A787B42515F40600210B1A /* Character+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A787B32515F40600210B1A /* Character+Decodable.swift */; };
+		01A787B72515F87200210B1A /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A787B62515F87200210B1A /* Http.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		01A787AB2515F1EC00210B1A /* HarryPotterApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterApiClient.swift; sourceTree = "<group>"; };
 		01A787AE2515F22D00210B1A /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		01A787B32515F40600210B1A /* Character+Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Decodable.swift"; sourceTree = "<group>"; };
+		01A787B62515F87200210B1A /* Http.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				01A787B32515F40600210B1A /* Character+Decodable.swift */,
+				01A787B62515F87200210B1A /* Http.swift */,
 				01A787A62515F0AC00210B1A /* HarryPotterApiClientInterface.swift */,
 				01A787AB2515F1EC00210B1A /* HarryPotterApiClient.swift */,
 			);
@@ -205,6 +208,7 @@
 				01A787922515F03A00210B1A /* AppDelegate.swift in Sources */,
 				01A787AF2515F22D00210B1A /* Character.swift in Sources */,
 				01A787942515F03A00210B1A /* SceneDelegate.swift in Sources */,
+				01A787B72515F87200210B1A /* Http.swift in Sources */,
 				01A787B42515F40600210B1A /* Character+Decodable.swift in Sources */,
 				01A787A72515F0AC00210B1A /* HarryPotterApiClientInterface.swift in Sources */,
 			);

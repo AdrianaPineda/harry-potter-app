@@ -10,17 +10,6 @@ import Alamofire
 import Foundation
 import PromiseKit
 
-enum Http {
-    enum Method {
-        case get
-        case post
-    }
-
-    enum RequestError: LocalizedError {
-        case invalidResponse(String?)
-    }
-}
-
 class HarryPotterApiClient: HarryPotterApiClientInterface {
     private let baseUrl: String
     private let apiKey: String
