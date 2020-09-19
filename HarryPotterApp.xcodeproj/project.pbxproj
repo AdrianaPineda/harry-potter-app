@@ -15,6 +15,7 @@
 		019FD9AF251615D900222459 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FD9AE251615D900222459 /* CharacterDetailViewModel.swift */; };
 		019FD9B225163BA000222459 /* NavigationBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FD9B125163BA000222459 /* NavigationBuilder.swift */; };
 		019FD9B4251646DE00222459 /* CharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FD9B3251646DE00222459 /* CharacterDetailViewController.swift */; };
+		019FD9B6251669B900222459 /* House+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FD9B5251669B900222459 /* House+Extensions.swift */; };
 		01A787922515F03A00210B1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A787912515F03A00210B1A /* AppDelegate.swift */; };
 		01A787962515F03A00210B1A /* CharacterListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A787952515F03A00210B1A /* CharacterListViewController.swift */; };
 		01A7879B2515F03B00210B1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01A7879A2515F03B00210B1A /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		019FD9AE251615D900222459 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 		019FD9B125163BA000222459 /* NavigationBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBuilder.swift; sourceTree = "<group>"; };
 		019FD9B3251646DE00222459 /* CharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewController.swift; sourceTree = "<group>"; };
+		019FD9B5251669B900222459 /* House+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "House+Extensions.swift"; sourceTree = "<group>"; };
 		01A7878E2515F03A00210B1A /* HarryPotterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HarryPotterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01A787912515F03A00210B1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		01A787952515F03A00210B1A /* CharacterListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				019FD9B3251646DE00222459 /* CharacterDetailViewController.swift */,
+				019FD9B5251669B900222459 /* House+Extensions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				019FD9B6251669B900222459 /* House+Extensions.swift in Sources */,
 				019FD9A12515FFE200222459 /* CharacterListViewModel.swift in Sources */,
 				019FD9A32516091F00222459 /* Dynamic.swift in Sources */,
 				01A787962515F03A00210B1A /* CharacterListViewController.swift in Sources */,

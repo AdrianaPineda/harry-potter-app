@@ -33,7 +33,7 @@ class CharacterCellView: UICollectionViewCell {
 
     func configureNameLabel() {
         contentView.addSubview(nameLabel)
-        nameLabel.textColor = UIColor.black
+        nameLabel.textColor = UIColor(named: "Text")
         nameLabel.numberOfLines = 0
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
