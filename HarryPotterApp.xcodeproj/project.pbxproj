@@ -70,8 +70,9 @@
 		01A787902515F03A00210B1A /* HarryPotterApp */ = {
 			isa = PBXGroup;
 			children = (
-				01A787AD2515F21000210B1A /* Model */,
 				01A787A52515F08200210B1A /* Networking */,
+				01A787AD2515F21000210B1A /* Model */,
+				01A787B82515F8B400210B1A /* ViewModel */,
 				01A787912515F03A00210B1A /* AppDelegate.swift */,
 				01A787932515F03A00210B1A /* SceneDelegate.swift */,
 				01A787952515F03A00210B1A /* ViewController.swift */,
@@ -100,6 +101,13 @@
 				01A787AE2515F22D00210B1A /* Character.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		01A787B82515F8B400210B1A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
