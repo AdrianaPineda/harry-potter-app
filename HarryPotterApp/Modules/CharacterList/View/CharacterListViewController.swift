@@ -10,15 +10,24 @@ import UIKit
 
 class CharacterListViewController: UIViewController {
     private let sectionInsets = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-    private let cellHeight = 60
+    private let cellHeight = 40
 
     var collectionView: UICollectionView?
-    var characterListViewModel: CharacterListViewModel?
+    var characterListViewModel: CharacterListViewModelInterface?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
+    }
+
+    func configureUI() {
+        configureNavigationBar()
         configureCollectionView()
         configureViewModel()
+    }
+
+    func configureNavigationBar() {
+        title = "Harry Potter Characters"
     }
 
     func configureCollectionView() {
@@ -28,6 +37,7 @@ class CharacterListViewController: UIViewController {
         guard let collectionView = collectionView else {
             return
         }
+
         collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.register(CharacterCellView.self, forCellWithReuseIdentifier: CharacterCellView.identifier)
         collectionView.dataSource = self
@@ -75,5 +85,22 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
         let padding = Int(sectionInsets.left + sectionInsets.right)
         let cellsWidth = Int(view.safeAreaLayoutGuide.layoutFrame.width) - padding
         return CGSize(width: cellsWidth, height: cellHeight)
+    }
+}
+
+extension CharacterListViewController: UICollectionViewDelegate {
+    func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let characterListViewModel = characterListViewModel else {
+            print("Invalid character list view model")
+            return
+        }
+
+        let rowSelected = indexPath.row
+        let characterDetailViewModel = characterListViewModel.getCharacterDetailViewModel(row: rowSelected)
+        let characterDetailViewController =
+            CharacterDetailViewController(characterDetailViewModel: characterDetailViewModel)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back to list", style: .plain, target: nil,
+                                                           action: nil)
+        navigationController?.pushViewController(characterDetailViewController, animated: true)
     }
 }

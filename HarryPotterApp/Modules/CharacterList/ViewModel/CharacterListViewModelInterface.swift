@@ -9,4 +9,5 @@
 protocol CharacterListViewModelInterface {
     var characters: Dynamic<[Character]> { get }
     func loadCharacters()
+    func getCharacterDetailViewModel(row: Int) -> CharacterDetailViewModelInterface
 }

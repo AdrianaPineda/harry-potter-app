@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let viewModel = CharacterListViewModel(apiClient: apiClient)
         let characterList = CharacterListViewController()
         characterList.characterListViewModel = viewModel
-        window.rootViewController = characterList
+        let navigationController = NavigationBuilder.build(viewController: characterList)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
         return true

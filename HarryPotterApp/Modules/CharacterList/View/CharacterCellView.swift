@@ -10,8 +10,12 @@ import UIKit
 
 class CharacterCellView: UICollectionViewCell {
     static let identifier = "CharacterCell"
+    private let leadingSpace: CGFloat = 12
+    private let trailingSpace: CGFloat = -12
+    private let arrowSize: CGFloat = 12
 
-    var nameLabel = UILabel()
+    let nameLabel = UILabel(frame: .zero)
+    private let disclosureImage = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,22 +27,35 @@ class CharacterCellView: UICollectionViewCell {
     }
 
     func setup() {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
         configureNameLabel()
+        configureDisclosureIndicator()
     }
 
     func configureNameLabel() {
         contentView.addSubview(nameLabel)
-        nameLabel.textColor = UIColor.black
+        nameLabel.textColor = UIColor(named: "Text")
         nameLabel.numberOfLines = 0
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+
         let constraints = [
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor,
-                                           constant: 8),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                              constant: 8)
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: leadingSpace),
+            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ]
+        NSLayoutConstraint.activate(constraints)
+    }
+
+    func configureDisclosureIndicator() {
+        contentView.addSubview(disclosureImage)
+        disclosureImage.image = UIImage(named: "Arrow")
+        disclosureImage.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            disclosureImage.widthAnchor.constraint(equalToConstant: arrowSize),
+            disclosureImage.heightAnchor.constraint(equalToConstant: arrowSize),
+            disclosureImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            disclosureImage.leadingAnchor.constraint(greaterThanOrEqualTo: nameLabel.trailingAnchor,
+                                                     constant: leadingSpace),
+            disclosureImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: trailingSpace)
         ]
         NSLayoutConstraint.activate(constraints)
     }
