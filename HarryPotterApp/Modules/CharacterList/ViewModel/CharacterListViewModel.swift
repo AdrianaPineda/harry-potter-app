@@ -23,4 +23,10 @@ class CharacterListViewModel: CharacterListViewModelInterface {
             print("Error fetching characters \(error.localizedDescription)")
         }
     }
+
+    func getCharacterDetailViewModel(row: Int) -> CharacterDetailViewModelInterface {
+        let character = characters.value[row]
+        let characterDetailViewModel = CharacterDetailViewModel(character: character)
+        return characterDetailViewModel
+    }
 }
