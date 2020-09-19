@@ -37,6 +37,7 @@ class CharacterListViewController: UIViewController {
         guard let collectionView = collectionView else {
             return
         }
+
         collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.register(CharacterCellView.self, forCellWithReuseIdentifier: CharacterCellView.identifier)
         collectionView.dataSource = self
@@ -89,11 +90,13 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
 
 extension CharacterListViewController: UICollectionViewDelegate {
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let rowSelected = indexPath.row
-        guard let characterDetailViewModel = characterListViewModel?.getCharacterDetailViewModel(row: rowSelected)
-        else {
+        guard let characterListViewModel = characterListViewModel else {
+            print("Invalid character list view model")
             return
         }
+
+        let rowSelected = indexPath.row
+        let characterDetailViewModel = characterListViewModel.getCharacterDetailViewModel(row: rowSelected)
         let characterDetailViewController =
             CharacterDetailViewController(characterDetailViewModel: characterDetailViewModel)
         navigationController?.pushViewController(characterDetailViewController, animated: true)
