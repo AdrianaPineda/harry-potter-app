@@ -44,6 +44,11 @@ extension Character: Decodable {
         case role
         case house
         case school
+        case patronus
+        case isMinistryOfMagic = "ministryOfMagic"
+        case isPartOfOrderOfThePhoenix = "orderOfThePhoenix"
+        case isPartOfDumbledoresArmy = "dumbledoresArmy"
+        case isDeathEather = "deathEater"
         case bloodType = "bloodStatus"
         case species
     }
@@ -52,11 +57,16 @@ extension Character: Decodable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)
         role = try values.decodeIfPresent(String.self, forKey: .role)
-
         let houseAsString = try values.decodeIfPresent(String.self, forKey: .house)
         house = House.from(string: houseAsString)
-
+        school = try values.decodeIfPresent(String.self, forKey: .school)
+        patronus = try values.decodeIfPresent(String.self, forKey: .patronus)
+        isMinistryOfMagic = try values.decodeIfPresent(Bool.self, forKey: .isMinistryOfMagic) ?? false
+        isPartOfOrderOfThePhoenix = try values.decodeIfPresent(Bool.self, forKey: .isPartOfOrderOfThePhoenix) ?? false
+        isPartOfDumbledoresArmy = try values.decodeIfPresent(Bool.self, forKey: .isPartOfDumbledoresArmy) ?? false
+        isDeathEather = try values.decodeIfPresent(Bool.self, forKey: .isDeathEather) ?? false
         let bloodTypeAsString = try values.decode(String.self, forKey: .bloodType)
         bloodType = BloodType.from(string: bloodTypeAsString)
+        species = try values.decode(String.self, forKey: .species)
     }
 }

@@ -24,5 +24,12 @@ struct Character {
     var name: String
     var role: String?
     var house: House?
+    var school: String?
+    var patronus: String?
+    var isMinistryOfMagic: Bool
+    var isPartOfOrderOfThePhoenix: Bool
+    var isPartOfDumbledoresArmy: Bool
+    var isDeathEather: Bool
+    var species: String
     var bloodType: BloodType
 }
