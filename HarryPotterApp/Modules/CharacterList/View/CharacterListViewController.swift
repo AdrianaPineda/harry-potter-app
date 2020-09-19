@@ -17,8 +17,17 @@ class CharacterListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
+    }
+
+    func configureUI() {
+        configureNavigationBar()
         configureCollectionView()
         configureViewModel()
+    }
+
+    func configureNavigationBar() {
+        title = "Characters"
     }
 
     func configureCollectionView() {
