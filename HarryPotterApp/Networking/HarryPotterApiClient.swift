@@ -5,9 +5,10 @@
 //  Created by Adriana Pineda on 19/09/2020.
 //  Copyright © 2020 Adriana Pineda. All rights reserved.
 //
-import PromiseKit
+
 import Alamofire
 import Foundation
+import PromiseKit
 
 enum Http {
     enum Method {
@@ -21,7 +22,6 @@ enum Http {
 }
 
 class HarryPotterApiClient: HarryPotterApiClientInterface {
-
     private let baseUrl: String
     private let apiKey: String
 
@@ -30,7 +30,7 @@ class HarryPotterApiClient: HarryPotterApiClientInterface {
         self.apiKey = apiKey
     }
 
-    func getCharacters(count: Int) -> Promise<[Character]> {
+    func getCharacters() -> Promise<[Character]> {
         return Promise { seal in
             let url = "\(baseUrl)/characters?key=\(apiKey)"
             AF.request(url, method: .get).responseJSON { response in
@@ -52,4 +52,3 @@ class HarryPotterApiClient: HarryPotterApiClientInterface {
         }
     }
 }
-

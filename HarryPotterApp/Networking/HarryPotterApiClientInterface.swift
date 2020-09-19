@@ -9,5 +9,5 @@ import PromiseKit
 
 protocol HarryPotterApiClientInterface {
     init(baseUrl: String, apiKey: String)
-    func getCharacters(count: Int) -> Promise<[Character]>
+    func getCharacters() -> Promise<[Character]>
 }

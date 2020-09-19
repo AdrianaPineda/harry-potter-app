@@ -9,16 +9,16 @@
 extension House {
     static func from(string: String?) -> House? {
         switch string {
-            case "Gryffindor":
-                return .gryffindor
-            case "Slytherin":
-                return .slytherin
-            case "Ravenclaw":
-                return .ravenclaw
-            case "Hufflepuff":
-                return .hufflepuff
-            default:
-                return nil
+        case "Gryffindor":
+            return .gryffindor
+        case "Slytherin":
+            return .slytherin
+        case "Ravenclaw":
+            return .ravenclaw
+        case "Hufflepuff":
+            return .hufflepuff
+        default:
+            return nil
         }
     }
 }
@@ -26,14 +26,14 @@ extension House {
 extension BloodType {
     static func from(string: String?) -> BloodType {
         switch string {
-            case "half-blood":
-                return .halfBlood
-            case "pure-blood":
-                return .pureBlood
-            case "muggle":
-                return .muggle
-            default:
-                return .unknown
+        case "half-blood":
+            return .halfBlood
+        case "pure-blood":
+            return .pureBlood
+        case "muggle":
+            return .muggle
+        default:
+            return .unknown
         }
     }
 }
@@ -58,7 +58,5 @@ extension Character: Decodable {
 
         let bloodTypeAsString = try values.decode(String.self, forKey: .bloodType)
         bloodType = BloodType.from(string: bloodTypeAsString)
-
-
     }
 }
