@@ -60,11 +60,6 @@ extension CharacterListViewController: UICollectionViewDataSource {
         guard let characterCell = cell as? CharacterCellView else { return cell }
 
         let row = indexPath.row
-        let charactersCount = characterListViewModel?.characters.value.count ?? 0
-        if (row + 1) > charactersCount {
-            return characterCell
-        }
-
         if let currentChar = characterListViewModel?.characters.value[row] {
             characterCell.nameLabel.text = currentChar.name
         }
