@@ -12,15 +12,18 @@ class CharacterDetailViewController: UIViewController {
     private let characterDetailViewModel: CharacterDetailViewModelInterface
 
     private let nameLabel = UILabel()
-    private let houseImage = UIImageView()
+    private var houseImage: UIImageView?
     private let houseText = UILabel()
     private let roleLabel = UILabel()
+    private let roleDescriptionLabel = UILabel()
 
     private let titleFontSize: CGFloat = 30
     private let textFontSize: CGFloat = 15
 
     private let topSpace: CGFloat = 20
     private let leadingSpace: CGFloat = 20
+    private let textSpace: CGFloat = 4
+    private let trailingSpace: CGFloat = -20
     private let titleToFirstTextSpace: CGFloat = 30
 
     init(characterDetailViewModel: CharacterDetailViewModelInterface) {
@@ -49,6 +52,8 @@ class CharacterDetailViewController: UIViewController {
         view.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.text = characterDetailViewModel.character.value.name
+        nameLabel.numberOfLines = 0
+        nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.font = UIFont.systemFont(ofSize: titleFontSize)
         nameLabel.textColor = UIColor(named: "Text")
         let constraints = [
@@ -60,15 +65,19 @@ class CharacterDetailViewController: UIViewController {
     }
 
     func configureHouse() {
-        configureHouseText()
+        let house = characterDetailViewModel.character.value.house
 
-        guard let house = characterDetailViewModel.character.value.house else {
-            houseText.text = "Character does not have a house"
+        defer {
+            configureHouseText(house: house)
+        }
+
+        guard let currentHouse = house else {
             return
         }
 
-        houseImage.image = house.getImage()
-        houseText.text = house.getText()
+        houseImage = UIImageView(image: currentHouse.getImage())
+        guard let houseImage = houseImage else { return }
+
         view.addSubview(houseImage)
         houseImage.translatesAutoresizingMaskIntoConstraints = false
         houseImage.contentMode = .scaleAspectFit
@@ -81,11 +90,13 @@ class CharacterDetailViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
 
-    func configureHouseText() {
+    func configureHouseText(house: House?) {
         view.addSubview(houseText)
+        houseText.text = house?.getText() ?? "Character does not have a house"
         houseText.translatesAutoresizingMaskIntoConstraints = false
+        let bottomAnchor = houseImage?.bottomAnchor ?? nameLabel.bottomAnchor
         let houseTextConstraints = [
-            houseText.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: titleToFirstTextSpace),
+            houseText.topAnchor.constraint(equalTo: bottomAnchor, constant: titleToFirstTextSpace),
             houseText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leadingSpace)
         ]
         NSLayoutConstraint.activate(houseTextConstraints)
@@ -93,15 +104,30 @@ class CharacterDetailViewController: UIViewController {
 
     func configureRole() {
         view.addSubview(roleLabel)
+        view.addSubview(roleDescriptionLabel)
         roleLabel.translatesAutoresizingMaskIntoConstraints = false
+        roleDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         if let role = characterDetailViewModel.character.value.role {
-            roleLabel.text = "Role: \(role)"
+            roleLabel.text = "Role: "
+            roleDescriptionLabel.text = role
         }
-        roleLabel.font = UIFont.systemFont(ofSize: textFontSize)
+
+        roleLabel.font = UIFont.boldSystemFont(ofSize: textFontSize)
         roleLabel.textColor = UIColor(named: "Text")
+        roleLabel.numberOfLines = 0
+        roleLabel.lineBreakMode = .byWordWrapping
+
+        roleDescriptionLabel.font = UIFont.systemFont(ofSize: textFontSize)
+        roleDescriptionLabel.textColor = UIColor(named: "Text")
+        roleDescriptionLabel.numberOfLines = 0
+        roleDescriptionLabel.lineBreakMode = .byWordWrapping
+
         let constraints = [
             roleLabel.topAnchor.constraint(equalTo: houseText.bottomAnchor, constant: titleToFirstTextSpace),
-            roleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingSpace)
+            roleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingSpace),
+            roleDescriptionLabel.topAnchor.constraint(equalTo: roleLabel.topAnchor),
+            roleDescriptionLabel.leadingAnchor.constraint(equalTo: roleLabel.trailingAnchor, constant: textSpace),
+            roleDescriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: trailingSpace)
         ]
         NSLayoutConstraint.activate(constraints)
     }
