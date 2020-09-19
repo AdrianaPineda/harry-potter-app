@@ -109,6 +109,7 @@
 				01A7878A2515F03A00210B1A /* Sources */,
 				01A7878B2515F03A00210B1A /* Frameworks */,
 				01A7878C2515F03A00210B1A /* Resources */,
+				01A787B52515F74A00210B1A /* Linter */,
 			);
 			buildRules = (
 			);
@@ -172,6 +173,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01A787B52515F74A00210B1A /* Linter */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Linter;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat >/dev/null && which swiftlint >/dev/null; then\n  swiftformat --config .swiftformat . \n  swiftlint --config .swiftlint.yml\nelse\n  echo \"warning: SwiftFormat or SwiftLint not installed, download from https://github.com/nicklockwood/SwiftFormat or https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		01A7878A2515F03A00210B1A /* Sources */ = {
