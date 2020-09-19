@@ -20,7 +20,7 @@ class CharacterDetailViewController: UIViewController {
     private let characterDetailViewModel: CharacterDetailViewModelInterface
 
     private let nameLabel = UILabel()
-    private var houseImage: UIImageView?
+    private var houseImage = UIImageView()
     private let houseText = UILabel()
     private let roleLabel = UILabel()
     private let roleDescriptionLabel = UILabel()
@@ -48,7 +48,8 @@ class CharacterDetailViewController: UIViewController {
     private let textSpace: CGFloat = 8
     private let itemsSpace: CGFloat = 12
     private let trailingSpace: CGFloat = -20
-    private let titleToFirstTextSpace: CGFloat = 30
+    private let titleToFirstItemSpace: CGFloat = 25
+    private let imageToFirstTextSpace: CGFloat = 15
 
     init(characterDetailViewModel: CharacterDetailViewModelInterface) {
         self.characterDetailViewModel = characterDetailViewModel
@@ -98,39 +99,30 @@ class CharacterDetailViewController: UIViewController {
 
     func configureHouse(character: Character) {
         let house = character.house
-
-        defer {
-            configureHouseText(house: house)
-        }
-
-        guard let currentHouse = house else {
-            return
-        }
-
-        houseImage = UIImageView(image: currentHouse.getImage())
-        guard let houseImage = houseImage else { return }
-
+        let image = house?.getImage() ?? UIImage(named: "no-house")
+        houseImage = UIImageView(image: image)
         view.addSubview(houseImage)
         houseImage.translatesAutoresizingMaskIntoConstraints = false
         houseImage.contentMode = .scaleAspectFit
         let constraints = [
-            houseImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: titleToFirstTextSpace),
+            houseImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: titleToFirstItemSpace),
             houseImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
             houseImage.widthAnchor.constraint(equalToConstant: 150),
             houseImage.heightAnchor.constraint(equalToConstant: 150)
         ]
         NSLayoutConstraint.activate(constraints)
+
+        configureHouseText(house: house)
     }
 
     func configureHouseText(house: House?) {
         view.addSubview(houseText)
-        houseText.text = house?.getText() ?? "Character does not have a house"
+        houseText.text = house?.getText() ?? "Character does not belong to any house"
         houseText.textColor = UIColor(named: "Text")
         houseText.font = UIFont.systemFont(ofSize: headingFontSize)
         houseText.translatesAutoresizingMaskIntoConstraints = false
-        let bottomAnchor = houseImage?.bottomAnchor ?? nameLabel.bottomAnchor
         let houseTextConstraints = [
-            houseText.topAnchor.constraint(equalTo: bottomAnchor, constant: textSpace),
+            houseText.topAnchor.constraint(equalTo: houseImage.bottomAnchor, constant: imageToFirstTextSpace),
             houseText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leadingSpace)
         ]
         NSLayoutConstraint.activate(houseTextConstraints)
@@ -146,14 +138,15 @@ class CharacterDetailViewController: UIViewController {
     func configureSchool(character: Character) {
         let schoolDescription = character.school ?? "no school available"
         let itemConfig = ItemConfig(title: schoolLabel, description: schoolDescriptionLabel, titleText: "School",
-                                    descriptionText: schoolDescription, bottomAnchor: roleLabel.bottomAnchor)
+                                    descriptionText: schoolDescription, bottomAnchor: roleDescriptionLabel.bottomAnchor)
         configureItem(config: itemConfig)
     }
 
     func configurePatronus(character: Character) {
         let patronusDescription = character.patronus ?? "no patronus available"
         let itemConfig = ItemConfig(title: patronusLabel, description: patronusDescriptionLabel, titleText: "Patronus",
-                                    descriptionText: patronusDescription, bottomAnchor: schoolLabel.bottomAnchor)
+                                    descriptionText: patronusDescription,
+                                    bottomAnchor: schoolDescriptionLabel.bottomAnchor)
         configureItem(config: itemConfig)
     }
 
@@ -162,7 +155,7 @@ class CharacterDetailViewController: UIViewController {
         let itemConfig = ItemConfig(title: ministryOfMagicLabel, description: ministryOfMagicDescriptionLabel,
                                     titleText: "Is Ministry of Magic",
                                     descriptionText: ministryOfMagicDescription,
-                                    bottomAnchor: patronusLabel.bottomAnchor)
+                                    bottomAnchor: patronusDescriptionLabel.bottomAnchor)
         configureItem(config: itemConfig)
     }
 
@@ -172,7 +165,7 @@ class CharacterDetailViewController: UIViewController {
         let itemConfig = ItemConfig(title: orderOfThePhoenixLabel, description: orderOfThePhoenixDescriptionLabel,
                                     titleText: titleText,
                                     descriptionText: orderOfThePhoenixDescription,
-                                    bottomAnchor: ministryOfMagicLabel.bottomAnchor)
+                                    bottomAnchor: ministryOfMagicDescriptionLabel.bottomAnchor)
         configureItem(config: itemConfig)
     }
 
@@ -182,7 +175,7 @@ class CharacterDetailViewController: UIViewController {
         let itemConfig = ItemConfig(title: dumbledoresArmyLabel, description: dumbledoresArmyDescriptionLabel,
                                     titleText: tileText,
                                     descriptionText: dumbledoresArmyDescription,
-                                    bottomAnchor: orderOfThePhoenixLabel.bottomAnchor)
+                                    bottomAnchor: orderOfThePhoenixDescriptionLabel.bottomAnchor)
         configureItem(config: itemConfig)
     }
 
@@ -192,7 +185,7 @@ class CharacterDetailViewController: UIViewController {
         let itemConfig = ItemConfig(title: deathEatherLabel, description: deathEatherDescriptionLabel,
                                     titleText: tileText,
                                     descriptionText: deathEatherDescription,
-                                    bottomAnchor: dumbledoresArmyLabel.bottomAnchor)
+                                    bottomAnchor: dumbledoresArmyDescriptionLabel.bottomAnchor)
         configureItem(config: itemConfig)
     }
 
@@ -202,7 +195,7 @@ class CharacterDetailViewController: UIViewController {
         let itemConfig = ItemConfig(title: speciesLabel, description: speciesDescriptionLabel,
                                     titleText: tileText,
                                     descriptionText: speciesDescription,
-                                    bottomAnchor: deathEatherLabel.bottomAnchor)
+                                    bottomAnchor: deathEatherDescriptionLabel.bottomAnchor)
         configureItem(config: itemConfig)
     }
 
@@ -231,14 +224,16 @@ class CharacterDetailViewController: UIViewController {
         itemDescription.numberOfLines = 0
         itemDescription.lineBreakMode = .byWordWrapping
 
+        let itemDescriptionCalculatedWidth = view.frame.width - leadingSpace - itemTitle.intrinsicContentSize
+            .width - textSpace - trailingSpace
         let constraints = [
             itemTitle.topAnchor.constraint(equalTo: bottomAnchor, constant: itemsSpace),
             itemTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingSpace),
-            itemTitle.bottomAnchor.constraint(equalTo: itemDescription.bottomAnchor),
             itemDescription.topAnchor.constraint(equalTo: itemTitle.topAnchor),
             itemDescription.leadingAnchor.constraint(equalTo: itemTitle.trailingAnchor, constant: textSpace),
             itemDescription.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor,
-                                                      constant: trailingSpace)
+                                                      constant: trailingSpace),
+            itemDescription.widthAnchor.constraint(equalToConstant: itemDescriptionCalculatedWidth)
         ]
         NSLayoutConstraint.activate(constraints)
     }
