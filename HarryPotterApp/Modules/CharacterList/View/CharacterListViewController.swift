@@ -18,7 +18,7 @@ class CharacterListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        configureViewModelUpdates()
+        configureViewModel()
     }
 
     func configureCollectionView() {
@@ -35,12 +35,13 @@ class CharacterListViewController: UIViewController {
         view.addSubview(collectionView)
     }
 
-    func configureViewModelUpdates() {
+    func configureViewModel() {
         characterListViewModel?.characters.bind { [weak self] _ in
             DispatchQueue.main.async {
                 self?.collectionView?.reloadData()
             }
         }
+        characterListViewModel?.loadCharacters()
     }
 }
 

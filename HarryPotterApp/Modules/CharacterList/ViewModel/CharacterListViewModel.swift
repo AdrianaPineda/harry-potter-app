@@ -8,13 +8,12 @@
 
 import Foundation
 
-class CharacterListViewModel {
+class CharacterListViewModel: CharacterListViewModelInterface {
     let apiClient: HarryPotterApiClientInterface
     var characters: Dynamic<[Character]> = Dynamic([])
 
     init(apiClient: HarryPotterApiClientInterface) {
         self.apiClient = apiClient
-        loadCharacters()
     }
 
     func loadCharacters() {
