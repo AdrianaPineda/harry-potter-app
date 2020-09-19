@@ -27,7 +27,7 @@ class CharacterListViewController: UIViewController {
     }
 
     func configureNavigationBar() {
-        title = "Characters"
+        title = "Harry Potter Characters"
     }
 
     func configureCollectionView() {
