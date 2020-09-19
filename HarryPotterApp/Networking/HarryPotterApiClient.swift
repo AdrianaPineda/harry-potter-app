@@ -23,8 +23,6 @@ class HarryPotterApiClient: HarryPotterApiClientInterface {
         return Promise { seal in
             let url = "\(baseUrl)/characters?key=\(apiKey)"
             AF.request(url, method: .get).responseJSON { response in
-                print("====>", response)
-
                 guard let data = response.data else {
                     seal.reject(Http.RequestError.invalidResponse("invalid data"))
                     return

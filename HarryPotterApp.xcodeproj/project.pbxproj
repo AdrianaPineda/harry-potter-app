@@ -56,6 +56,7 @@
 		019FD9A4251612DE00222459 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				019FD9A72516134F00222459 /* Common */,
 				019FD9A5251612E600222459 /* CharacterList */,
 				019FD9A6251612F000222459 /* CharacterDetail */,
 			);
@@ -76,6 +77,14 @@
 			children = (
 			);
 			path = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		019FD9A72516134F00222459 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				019FD9A22516091F00222459 /* Dynamic.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		01A787852515F03A00210B1A = {
@@ -131,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				019FD9A02515FFE200222459 /* CharacterListViewModel.swift */,
-				019FD9A22516091F00222459 /* Dynamic.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

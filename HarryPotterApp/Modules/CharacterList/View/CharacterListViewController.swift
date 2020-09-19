@@ -9,7 +9,8 @@
 import UIKit
 
 class CharacterListViewController: UIViewController {
-    private var sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+    private let sectionInsets = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+    private let cellHeight = 60
 
     var collectionView: UICollectionView?
     var characterListViewModel: CharacterListViewModel?
@@ -17,18 +18,12 @@ class CharacterListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-
-        characterListViewModel?.characters.bind { [weak self] _ in
-            DispatchQueue.main.async {
-                self?.collectionView?.reloadData()
-            }
-        }
+        configureViewModelUpdates()
     }
 
     func configureCollectionView() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = sectionInset
-//        layout.itemSize = CGSize(width: 60, height: 60)
+        layout.sectionInset = sectionInsets
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
         guard let collectionView = collectionView else {
             return
@@ -38,6 +33,14 @@ class CharacterListViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         view.addSubview(collectionView)
+    }
+
+    func configureViewModelUpdates() {
+        characterListViewModel?.characters.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.collectionView?.reloadData()
+            }
+        }
     }
 }
 
@@ -73,8 +76,8 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_: UICollectionView,
                         layout _: UICollectionViewLayout,
                         sizeForItemAt _: IndexPath) -> CGSize {
-        let padding = Int(sectionInset.left + sectionInset.right)
+        let padding = Int(sectionInsets.left + sectionInsets.right)
         let cellsWidth = Int(view.safeAreaLayoutGuide.layoutFrame.width) - padding
-        return CGSize(width: cellsWidth, height: 50)
+        return CGSize(width: cellsWidth, height: cellHeight)
     }
 }
