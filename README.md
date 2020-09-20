@@ -29,17 +29,8 @@ If the dependencies have not been resolved you can:
 ## How to run
 
 1. Open `HarryPotterApp.xcodeproj`
+1. Execute the following command: `curl -Lo run https://raw.githubusercontent.com/Brightify/Cuckoo/master/run && chmod +x r`
 1. Open `AppDelegate.swift` file and set your api key. You can get your api key by registering on the [Potter API](https://www.potterapi.com/)
 1. Run the app.
 
 If you get any errors about dependencies, make sure you have resolved them first (see [Dependencies section](#Dependencies))
-
-## Unit tests
-
-In order to run unit tests, execute the following command:
-
-```
-curl -Lo run https://raw.githubusercontent.com/Brightify/Cuckoo/master/run && chmod +x run
-```
-
-The above command is needed for Cuckoo to automatically generate mocks.
