@@ -53,6 +53,11 @@ class CharacterListViewController: UIViewController {
         }
         characterListViewModel?.loadCharacters()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView?.frame = view.frame
+    }
 }
 
 extension CharacterListViewController: UICollectionViewDataSource {

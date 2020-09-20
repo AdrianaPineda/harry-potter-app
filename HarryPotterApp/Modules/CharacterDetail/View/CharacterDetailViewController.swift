@@ -27,7 +27,8 @@ class CharacterDetailViewController: UIViewController {
     private let textFontSize: CGFloat = 15
 
     // Image size
-    private let imageSize: CGFloat = 150
+    private let imageWidthAspectRatio: CGFloat = 0.3
+    private let imageHeightAspectRatio: CGFloat = 0.2
 
     // Constraints constants
     private let topSpace: CGFloat = 20
@@ -130,8 +131,10 @@ class CharacterDetailViewController: UIViewController {
         let constraints = [
             houseImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: titleToFirstItemSpace),
             houseImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
-            houseImage.widthAnchor.constraint(equalToConstant: imageSize),
-            houseImage.heightAnchor.constraint(equalToConstant: imageSize)
+            houseImage.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,
+                                              multiplier: imageWidthAspectRatio),
+            houseImage.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor,
+                                               multiplier: imageHeightAspectRatio)
         ]
         NSLayoutConstraint.activate(constraints)
     }
