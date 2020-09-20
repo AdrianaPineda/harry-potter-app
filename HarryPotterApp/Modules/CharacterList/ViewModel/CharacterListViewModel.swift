@@ -9,7 +9,7 @@
 import Foundation
 
 class CharacterListViewModel: CharacterListViewModelInterface {
-    let apiClient: HarryPotterApiClientInterface
+    private let apiClient: HarryPotterApiClientInterface
     var characters: Dynamic<[Character]> = Dynamic([])
 
     init(apiClient: HarryPotterApiClientInterface) {
@@ -24,8 +24,11 @@ class CharacterListViewModel: CharacterListViewModelInterface {
         }
     }
 
-    func getCharacterDetailViewModel(row: Int) -> CharacterDetailViewModelInterface {
-        let character = characters.value[row]
+    func getCharacterDetailViewModel(index: Int) -> CharacterDetailViewModelInterface? {
+        if (index + 1) > characters.value.count {
+            return nil
+        }
+        let character = characters.value[index]
         let characterDetailViewModel = CharacterDetailViewModel(character: character)
         return characterDetailViewModel
     }

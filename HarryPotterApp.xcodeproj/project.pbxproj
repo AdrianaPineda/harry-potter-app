@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0128B39525172C7600DA47EA /* CharacterListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0128B39425172C7600DA47EA /* CharacterListViewModelTests.swift */; };
+		0128B39B25172DEC00DA47EA /* GeneratedMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0128B39A25172DEC00DA47EA /* GeneratedMocks.swift */; };
+		0128B39E25172F6C00DA47EA /* Cuckoo in Frameworks */ = {isa = PBXBuildFile; productRef = 0128B39D25172F6C00DA47EA /* Cuckoo */; };
+		0128B3A12517317900DA47EA /* Character+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0128B3A02517317900DA47EA /* Character+Equatable.swift */; };
+		0128B3A32517334300DA47EA /* CharacterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0128B3A22517334300DA47EA /* CharacterFactory.swift */; };
+		0128B3A62517335200DA47EA /* CharactersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0128B3A52517335200DA47EA /* CharactersFactory.swift */; };
+		0128B3AA251738CD00DA47EA /* CharacterDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0128B3A9251738CD00DA47EA /* CharacterDetailViewModelTests.swift */; };
 		019A85D52515FD9800A1BB1A /* CharacterCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019A85D42515FD9800A1BB1A /* CharacterCellView.swift */; };
 		019FD9A12515FFE200222459 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FD9A02515FFE200222459 /* CharacterListViewModel.swift */; };
 		019FD9A32516091F00222459 /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019FD9A22516091F00222459 /* Dynamic.swift */; };
@@ -29,9 +36,26 @@
 		01A787B72515F87200210B1A /* Http.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A787B62515F87200210B1A /* Http.swift */; };
 		01DEBE1925169316006770E1 /* CharacterDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEBE1825169316006770E1 /* CharacterDetailCell.swift */; };
 		01DEBE1D2516B0A8006770E1 /* Character+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEBE1C2516B0A8006770E1 /* Character+Extensions.swift */; };
+		01DEBE4925172C20006770E1 /* HarryPotterAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEBE4825172C20006770E1 /* HarryPotterAppTests.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		01DEBE4B25172C20006770E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01A787862515F03A00210B1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01A7878D2515F03A00210B1A;
+			remoteInfo = HarryPotterApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		0128B39425172C7600DA47EA /* CharacterListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModelTests.swift; sourceTree = "<group>"; };
+		0128B39A25172DEC00DA47EA /* GeneratedMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneratedMocks.swift; sourceTree = "<group>"; };
+		0128B3A02517317900DA47EA /* Character+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Equatable.swift"; sourceTree = "<group>"; };
+		0128B3A22517334300DA47EA /* CharacterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterFactory.swift; sourceTree = "<group>"; };
+		0128B3A52517335200DA47EA /* CharactersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersFactory.swift; sourceTree = "<group>"; };
+		0128B3A9251738CD00DA47EA /* CharacterDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModelTests.swift; sourceTree = "<group>"; };
 		019A85D42515FD9800A1BB1A /* CharacterCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCellView.swift; sourceTree = "<group>"; };
 		019FD9A02515FFE200222459 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		019FD9A22516091F00222459 /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
@@ -54,6 +78,9 @@
 		01A787B62515F87200210B1A /* Http.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Http.swift; sourceTree = "<group>"; };
 		01DEBE1825169316006770E1 /* CharacterDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailCell.swift; sourceTree = "<group>"; };
 		01DEBE1C2516B0A8006770E1 /* Character+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Character+Extensions.swift"; sourceTree = "<group>"; };
+		01DEBE4625172C20006770E1 /* HarryPotterAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HarryPotterAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		01DEBE4825172C20006770E1 /* HarryPotterAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HarryPotterAppTests.swift; sourceTree = "<group>"; };
+		01DEBE4A25172C20006770E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +93,68 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01DEBE4325172C20006770E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0128B39E25172F6C00DA47EA /* Cuckoo in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0128B39125172C5700DA47EA /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				0128B39225172C5B00DA47EA /* CharacterList */,
+				0128B3A72517385000DA47EA /* CharacterDetail */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		0128B39225172C5B00DA47EA /* CharacterList */ = {
+			isa = PBXGroup;
+			children = (
+				0128B39325172C6800DA47EA /* ViewModel */,
+			);
+			path = CharacterList;
+			sourceTree = "<group>";
+		};
+		0128B39325172C6800DA47EA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0128B39425172C7600DA47EA /* CharacterListViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0128B39F2517316800DA47EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0128B3A02517317900DA47EA /* Character+Equatable.swift */,
+				0128B3A22517334300DA47EA /* CharacterFactory.swift */,
+				0128B3A52517335200DA47EA /* CharactersFactory.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0128B3A72517385000DA47EA /* CharacterDetail */ = {
+			isa = PBXGroup;
+			children = (
+				0128B3A82517386500DA47EA /* ViewModel */,
+			);
+			path = CharacterDetail;
+			sourceTree = "<group>";
+		};
+		0128B3A82517386500DA47EA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0128B3A9251738CD00DA47EA /* CharacterDetailViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		019FD9A4251612DE00222459 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				01A787902515F03A00210B1A /* HarryPotterApp */,
+				01DEBE4725172C20006770E1 /* HarryPotterAppTests */,
 				01A7878F2515F03A00210B1A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -145,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				01A7878E2515F03A00210B1A /* HarryPotterApp.app */,
+				01DEBE4625172C20006770E1 /* HarryPotterAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,6 +289,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		01DEBE4725172C20006770E1 /* HarryPotterAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				0128B39A25172DEC00DA47EA /* GeneratedMocks.swift */,
+				0128B39F2517316800DA47EA /* Model */,
+				0128B39125172C5700DA47EA /* Modules */,
+				01DEBE4825172C20006770E1 /* HarryPotterAppTests.swift */,
+				01DEBE4A25172C20006770E1 /* Info.plist */,
+			);
+			path = HarryPotterAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -212,6 +312,7 @@
 				01A7878B2515F03A00210B1A /* Frameworks */,
 				01A7878C2515F03A00210B1A /* Resources */,
 				01A787B52515F74A00210B1A /* Linter */,
+				0128B39925172D3700DA47EA /* Cuckoo */,
 			);
 			buildRules = (
 			);
@@ -226,6 +327,27 @@
 			productReference = 01A7878E2515F03A00210B1A /* HarryPotterApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		01DEBE4525172C20006770E1 /* HarryPotterAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01DEBE4D25172C20006770E1 /* Build configuration list for PBXNativeTarget "HarryPotterAppTests" */;
+			buildPhases = (
+				01DEBE4225172C20006770E1 /* Sources */,
+				01DEBE4325172C20006770E1 /* Frameworks */,
+				01DEBE4425172C20006770E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01DEBE4C25172C20006770E1 /* PBXTargetDependency */,
+			);
+			name = HarryPotterAppTests;
+			packageProductDependencies = (
+				0128B39D25172F6C00DA47EA /* Cuckoo */,
+			);
+			productName = HarryPotterAppTests;
+			productReference = 01DEBE4625172C20006770E1 /* HarryPotterAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -238,6 +360,10 @@
 				TargetAttributes = {
 					01A7878D2515F03A00210B1A = {
 						CreatedOnToolsVersion = 11.3;
+					};
+					01DEBE4525172C20006770E1 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 01A7878D2515F03A00210B1A;
 					};
 				};
 			};
@@ -253,12 +379,14 @@
 			packageReferences = (
 				01A787A82515F15B00210B1A /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				01A787B02515F33600210B1A /* XCRemoteSwiftPackageReference "Alamofire" */,
+				0128B39C25172F6C00DA47EA /* XCRemoteSwiftPackageReference "Cuckoo" */,
 			);
 			productRefGroup = 01A7878F2515F03A00210B1A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				01A7878D2515F03A00210B1A /* HarryPotterApp */,
+				01DEBE4525172C20006770E1 /* HarryPotterAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -273,9 +401,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01DEBE4425172C20006770E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0128B39925172D3700DA47EA /* Cuckoo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Cuckoo;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nOUTPUT_FILE=\"${PROJECT_DIR}/${PROJECT_NAME}Tests/GeneratedMocks.swift\"\necho \"Generated Mocks File = ${OUTPUT_FILE}\"\n\nINPUT_DIR=\"${PROJECT_DIR}/${PROJECT_NAME}\"\necho \"Mocks Input Directory = ${INPUT_DIR}\"\n\n# Generate mock files, include as many input files as you'd like to create mocks for.\n\"${PROJECT_DIR}/run\" --download generate --testable \"${PROJECT_NAME}\" \\\n--output \"${OUTPUT_FILE}\" \\\n\"${INPUT_DIR}/Networking/HarryPotterApiClientInterface.swift\"\n\n\n# ... and so forth, the last line should never end with a backslash\n\n# After running once, locate `GeneratedMocks.swift` and drag it into your Xcode test target group.\n";
+		};
 		01A787B52515F74A00210B1A /* Linter */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,7 +475,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01DEBE4225172C20006770E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0128B3A32517334300DA47EA /* CharacterFactory.swift in Sources */,
+				0128B3A12517317900DA47EA /* Character+Equatable.swift in Sources */,
+				0128B39525172C7600DA47EA /* CharacterListViewModelTests.swift in Sources */,
+				0128B3AA251738CD00DA47EA /* CharacterDetailViewModelTests.swift in Sources */,
+				0128B39B25172DEC00DA47EA /* GeneratedMocks.swift in Sources */,
+				0128B3A62517335200DA47EA /* CharactersFactory.swift in Sources */,
+				01DEBE4925172C20006770E1 /* HarryPotterAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		01DEBE4C25172C20006770E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01A7878D2515F03A00210B1A /* HarryPotterApp */;
+			targetProxy = 01DEBE4B25172C20006770E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		01A7879C2515F03B00210B1A /* LaunchScreen.storyboard */ = {
@@ -484,6 +659,46 @@
 			};
 			name = Release;
 		};
+		01DEBE4E25172C20006770E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HarryPotterAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pineda.adriana.HarryPotterAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HarryPotterApp.app/HarryPotterApp";
+			};
+			name = Debug;
+		};
+		01DEBE4F25172C20006770E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HarryPotterAppTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = pineda.adriana.HarryPotterAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HarryPotterApp.app/HarryPotterApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -505,9 +720,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		01DEBE4D25172C20006770E1 /* Build configuration list for PBXNativeTarget "HarryPotterAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01DEBE4E25172C20006770E1 /* Debug */,
+				01DEBE4F25172C20006770E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0128B39C25172F6C00DA47EA /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Brightify/Cuckoo";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.1;
+			};
+		};
 		01A787A82515F15B00210B1A /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mxcl/PromiseKit";
@@ -527,6 +759,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0128B39D25172F6C00DA47EA /* Cuckoo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0128B39C25172F6C00DA47EA /* XCRemoteSwiftPackageReference "Cuckoo" */;
+			productName = Cuckoo;
+		};
 		01A787A92515F15B00210B1A /* PromiseKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 01A787A82515F15B00210B1A /* XCRemoteSwiftPackageReference "PromiseKit" */;
