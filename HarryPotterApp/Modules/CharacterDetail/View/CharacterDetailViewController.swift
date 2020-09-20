@@ -50,7 +50,17 @@ class CharacterDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configureViewModel()
         configureUI()
+    }
+
+    private func configureViewModel() {
+        characterDetailViewModel.character.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.configureUI()
+            }
+        }
     }
 
     private func configureUI() {
@@ -161,10 +171,11 @@ class CharacterDetailViewController: UIViewController {
         let constraints = [
             detailsTableView.topAnchor.constraint(equalTo: houseText.bottomAnchor, constant: itemsSpace),
             detailsTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                               constant: leadingSpace),
+                                                      constant: leadingSpace),
             detailsTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                constant: trailingSpace),
-            detailsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomSpace)
+                                                       constant: trailingSpace),
+            detailsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                                                     constant: bottomSpace)
         ]
         NSLayoutConstraint.activate(constraints)
     }

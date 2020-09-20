@@ -96,7 +96,10 @@ extension CharacterListViewController: UICollectionViewDelegate {
         }
 
         let rowSelected = indexPath.row
-        let characterDetailViewModel = characterListViewModel.getCharacterDetailViewModel(row: rowSelected)
+        guard let characterDetailViewModel = characterListViewModel.getCharacterDetailViewModel(index: rowSelected)
+        else {
+            return
+        }
         let characterDetailViewController =
             CharacterDetailViewController(characterDetailViewModel: characterDetailViewModel)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back to list", style: .plain, target: nil,
