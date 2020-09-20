@@ -50,7 +50,17 @@ class CharacterDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configureViewModel()
         configureUI()
+    }
+
+    private func configureViewModel() {
+        characterDetailViewModel.character.bind { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.configureUI()
+            }
+        }
     }
 
     private func configureUI() {
