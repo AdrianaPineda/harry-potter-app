@@ -8,46 +8,30 @@
 
 import UIKit
 
-struct ItemConfig {
-    var title: UILabel
-    var description: UILabel
-    var titleText: String
-    var descriptionText: String
-    var bottomAnchor: NSLayoutYAxisAnchor
-}
-
 class CharacterDetailViewController: UIViewController {
     private let characterDetailViewModel: CharacterDetailViewModelInterface
+    private var details: [DetailInfo] {
+        return characterDetailViewModel.character.value.getDetails()
+    }
+
+    let tableView = UITableView()
 
     private let nameLabel = UILabel()
     private var houseImage = UIImageView()
     private let houseText = UILabel()
-    private let roleLabel = UILabel()
-    private let roleDescriptionLabel = UILabel()
-    private let schoolLabel = UILabel()
-    private let schoolDescriptionLabel = UILabel()
-    private let patronusLabel = UILabel()
-    private let patronusDescriptionLabel = UILabel()
-    private let ministryOfMagicLabel = UILabel()
-    private let ministryOfMagicDescriptionLabel = UILabel()
-    private let orderOfThePhoenixLabel = UILabel()
-    private let orderOfThePhoenixDescriptionLabel = UILabel()
-    private let dumbledoresArmyLabel = UILabel()
-    private let dumbledoresArmyDescriptionLabel = UILabel()
-    private let deathEatherLabel = UILabel()
-    private let deathEatherDescriptionLabel = UILabel()
-    private let speciesLabel = UILabel()
-    private let speciesDescriptionLabel = UILabel()
 
     private let titleFontSize: CGFloat = 30
     private let headingFontSize: CGFloat = 22
     private let textFontSize: CGFloat = 15
 
+    private let imageSize: CGFloat = 150
+
     private let topSpace: CGFloat = 20
+    private let bottomSpace: CGFloat = -8
     private let leadingSpace: CGFloat = 20
+    private let trailingSpace: CGFloat = -20
     private let textSpace: CGFloat = 8
     private let itemsSpace: CGFloat = 12
-    private let trailingSpace: CGFloat = -20
     private let titleToFirstItemSpace: CGFloat = 25
     private let imageToFirstTextSpace: CGFloat = 15
 
@@ -69,22 +53,15 @@ class CharacterDetailViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = UIColor(named: "Background")
         let character = characterDetailViewModel.character.value
-        configureName(character: character)
-        configureHouse(character: character)
-        configureRole(character: character)
-        configureSchool(character: character)
-        configurePatronus(character: character)
-        configureMinistryOfMagic(character: character)
-        configureOrderOfThePhoenix(character: character)
-        configureDumbledoresArmy(character: character)
-        configureDeathEather(character: character)
-        configureSpecies(character: character)
+        configureName(name: character.name)
+        configureHouse(house: character.house)
+        configureDetails()
     }
 
-    func configureName(character: Character) {
+    func configureName(name: String) {
         view.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = character.name
+        nameLabel.text = name
         nameLabel.numberOfLines = 0
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.font = UIFont.systemFont(ofSize: titleFontSize)
@@ -97,8 +74,7 @@ class CharacterDetailViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
 
-    func configureHouse(character: Character) {
-        let house = character.house
+    func configureHouse(house: House?) {
         let image = house?.getImage() ?? UIImage(named: "no-house")
         houseImage = UIImageView(image: image)
         view.addSubview(houseImage)
@@ -107,8 +83,8 @@ class CharacterDetailViewController: UIViewController {
         let constraints = [
             houseImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: titleToFirstItemSpace),
             houseImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
-            houseImage.widthAnchor.constraint(equalToConstant: 150),
-            houseImage.heightAnchor.constraint(equalToConstant: 150)
+            houseImage.widthAnchor.constraint(equalToConstant: imageSize),
+            houseImage.heightAnchor.constraint(equalToConstant: imageSize)
         ]
         NSLayoutConstraint.activate(constraints)
 
@@ -120,121 +96,67 @@ class CharacterDetailViewController: UIViewController {
         houseText.text = house?.getText() ?? "Character does not belong to any house"
         houseText.textColor = UIColor(named: "Text")
         houseText.font = UIFont.systemFont(ofSize: headingFontSize)
+        houseText.numberOfLines = 0
+        houseText.lineBreakMode = .byWordWrapping
+        houseText.textAlignment = .center
         houseText.translatesAutoresizingMaskIntoConstraints = false
         let houseTextConstraints = [
             houseText.topAnchor.constraint(equalTo: houseImage.bottomAnchor, constant: imageToFirstTextSpace),
-            houseText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leadingSpace)
+            houseText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leadingSpace),
+            houseText.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                                constant: trailingSpace)
         ]
         NSLayoutConstraint.activate(houseTextConstraints)
     }
 
-    func configureRole(character: Character) {
-        let roleDescription = character.role ?? "no role available"
-        let itemConfig = ItemConfig(title: roleLabel, description: roleDescriptionLabel, titleText: "Role",
-                                    descriptionText: roleDescription, bottomAnchor: houseText.bottomAnchor)
-        configureItem(config: itemConfig)
-    }
+    func configureDetails() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.backgroundColor = UIColor(named: "Background")
+        tableView.rowHeight = UITableView.automaticDimension
+        view.addSubview(tableView)
 
-    func configureSchool(character: Character) {
-        let schoolDescription = character.school ?? "no school available"
-        let itemConfig = ItemConfig(title: schoolLabel, description: schoolDescriptionLabel, titleText: "School",
-                                    descriptionText: schoolDescription, bottomAnchor: roleDescriptionLabel.bottomAnchor)
-        configureItem(config: itemConfig)
-    }
-
-    func configurePatronus(character: Character) {
-        let patronusDescription = character.patronus ?? "no patronus available"
-        let itemConfig = ItemConfig(title: patronusLabel, description: patronusDescriptionLabel, titleText: "Patronus",
-                                    descriptionText: patronusDescription,
-                                    bottomAnchor: schoolDescriptionLabel.bottomAnchor)
-        configureItem(config: itemConfig)
-    }
-
-    func configureMinistryOfMagic(character: Character) {
-        let ministryOfMagicDescription = character.isMinistryOfMagic ? "YES" : "NO"
-        let itemConfig = ItemConfig(title: ministryOfMagicLabel, description: ministryOfMagicDescriptionLabel,
-                                    titleText: "Is Ministry of Magic",
-                                    descriptionText: ministryOfMagicDescription,
-                                    bottomAnchor: patronusDescriptionLabel.bottomAnchor)
-        configureItem(config: itemConfig)
-    }
-
-    func configureOrderOfThePhoenix(character: Character) {
-        let orderOfThePhoenixDescription = character.isPartOfOrderOfThePhoenix ? "YES" : "NO"
-        let titleText = "Is Part of the Order of the Phoenix"
-        let itemConfig = ItemConfig(title: orderOfThePhoenixLabel, description: orderOfThePhoenixDescriptionLabel,
-                                    titleText: titleText,
-                                    descriptionText: orderOfThePhoenixDescription,
-                                    bottomAnchor: ministryOfMagicDescriptionLabel.bottomAnchor)
-        configureItem(config: itemConfig)
-    }
-
-    func configureDumbledoresArmy(character: Character) {
-        let dumbledoresArmyDescription = character.isPartOfDumbledoresArmy ? "YES" : "NO"
-        let tileText = "Is Part of Dumbledore's Army"
-        let itemConfig = ItemConfig(title: dumbledoresArmyLabel, description: dumbledoresArmyDescriptionLabel,
-                                    titleText: tileText,
-                                    descriptionText: dumbledoresArmyDescription,
-                                    bottomAnchor: orderOfThePhoenixDescriptionLabel.bottomAnchor)
-        configureItem(config: itemConfig)
-    }
-
-    func configureDeathEather(character: Character) {
-        let deathEatherDescription = character.isDeathEather ? "YES" : "NO"
-        let tileText = "Is Death Eather"
-        let itemConfig = ItemConfig(title: deathEatherLabel, description: deathEatherDescriptionLabel,
-                                    titleText: tileText,
-                                    descriptionText: deathEatherDescription,
-                                    bottomAnchor: dumbledoresArmyDescriptionLabel.bottomAnchor)
-        configureItem(config: itemConfig)
-    }
-
-    func configureSpecies(character: Character) {
-        let speciesDescription = character.species
-        let tileText = "Species"
-        let itemConfig = ItemConfig(title: speciesLabel, description: speciesDescriptionLabel,
-                                    titleText: tileText,
-                                    descriptionText: speciesDescription,
-                                    bottomAnchor: deathEatherDescriptionLabel.bottomAnchor)
-        configureItem(config: itemConfig)
-    }
-
-    func configureItem(config: ItemConfig) {
-        let itemTitle = config.title
-        let itemDescription = config.description
-        let itemTitleText = config.titleText
-        let descriptionText = config.descriptionText
-        let bottomAnchor = config.bottomAnchor
-
-        view.addSubview(itemTitle)
-        view.addSubview(itemDescription)
-        itemTitle.translatesAutoresizingMaskIntoConstraints = false
-        itemDescription.translatesAutoresizingMaskIntoConstraints = false
-
-        itemTitle.text = itemTitleText
-        itemDescription.text = descriptionText
-
-        itemTitle.font = UIFont.boldSystemFont(ofSize: textFontSize)
-        itemTitle.textColor = UIColor(named: "Text")
-        itemTitle.numberOfLines = 0
-        itemTitle.lineBreakMode = .byWordWrapping
-
-        itemDescription.font = UIFont.systemFont(ofSize: textFontSize)
-        itemDescription.textColor = UIColor(named: "Text")
-        itemDescription.numberOfLines = 0
-        itemDescription.lineBreakMode = .byWordWrapping
-
-        let itemDescriptionCalculatedWidth = view.frame.width - leadingSpace - itemTitle.intrinsicContentSize
-            .width - textSpace - trailingSpace
         let constraints = [
-            itemTitle.topAnchor.constraint(equalTo: bottomAnchor, constant: itemsSpace),
-            itemTitle.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingSpace),
-            itemDescription.topAnchor.constraint(equalTo: itemTitle.topAnchor),
-            itemDescription.leadingAnchor.constraint(equalTo: itemTitle.trailingAnchor, constant: textSpace),
-            itemDescription.trailingAnchor.constraint(greaterThanOrEqualTo: view.trailingAnchor,
-                                                      constant: trailingSpace),
-            itemDescription.widthAnchor.constraint(equalToConstant: itemDescriptionCalculatedWidth)
+            tableView.topAnchor.constraint(equalTo: houseText.bottomAnchor, constant: itemsSpace),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+                                               constant: leadingSpace),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+                                                constant: trailingSpace),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomSpace)
         ]
         NSLayoutConstraint.activate(constraints)
+
+        tableView.register(CharacterDetailCell.self, forCellReuseIdentifier: CharacterDetailCell.identifier)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorInset = .zero
+    }
+}
+
+extension CharacterDetailViewController: UITableViewDataSource {
+    func numberOfSections(in _: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        return details.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CharacterDetailCell.identifier, for: indexPath)
+        guard let characterDetailCell = cell as? CharacterDetailCell else { return cell }
+        characterDetailCell.info = details[indexPath.row]
+        characterDetailCell.selectionStyle = .none
+        return characterDetailCell
+    }
+}
+
+extension CharacterDetailViewController: UITableViewDelegate {
+    func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_: UITableView, estimatedHeightForRowAt _: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }
