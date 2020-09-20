@@ -12,8 +12,17 @@ class CharacterListViewController: UIViewController {
     private let sectionInsets = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
     private let cellHeight = 40
 
-    var collectionView: UICollectionView?
-    var characterListViewModel: CharacterListViewModelInterface?
+    private var collectionView: UICollectionView?
+    private let characterListViewModel: CharacterListViewModelInterface
+
+    init(characterListViewModel: CharacterListViewModelInterface) {
+        self.characterListViewModel = characterListViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +55,17 @@ class CharacterListViewController: UIViewController {
     }
 
     func configureViewModel() {
-        characterListViewModel?.characters.bind { [weak self] _ in
+        characterListViewModel.characters.bind { [weak self] _ in
             DispatchQueue.main.async {
                 self?.collectionView?.reloadData()
             }
         }
-        characterListViewModel?.loadCharacters()
+        characterListViewModel.loadCharacters()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView?.frame = view.frame
     }
 }
 
@@ -61,7 +75,7 @@ extension CharacterListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return characterListViewModel?.characters.value.count ?? 0
+        return characterListViewModel.characters.value.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -70,9 +84,8 @@ extension CharacterListViewController: UICollectionViewDataSource {
         guard let characterCell = cell as? CharacterCellView else { return cell }
 
         let row = indexPath.row
-        if let currentChar = characterListViewModel?.characters.value[row] {
-            characterCell.nameLabel.text = currentChar.name
-        }
+        let currentCharacter = characterListViewModel.characters.value[row]
+        characterCell.nameLabel.text = currentCharacter.name
 
         return characterCell
     }
@@ -90,11 +103,6 @@ extension CharacterListViewController: UICollectionViewDelegateFlowLayout {
 
 extension CharacterListViewController: UICollectionViewDelegate {
     func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let characterListViewModel = characterListViewModel else {
-            print("Invalid character list view model")
-            return
-        }
-
         let rowSelected = indexPath.row
         guard let characterDetailViewModel = characterListViewModel.getCharacterDetailViewModel(index: rowSelected)
         else {

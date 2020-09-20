@@ -17,9 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let apiClient = HarryPotterApiClient(baseUrl: "https://www.potterapi.com/v1",
                                              apiKey: "REPLACE_ME")
         let viewModel = CharacterListViewModel(apiClient: apiClient)
-        let characterList = CharacterListViewController()
-        characterList.characterListViewModel = viewModel
-        let navigationController = NavigationBuilder.build(viewController: characterList)
+        let characterListViewController = CharacterListViewController(characterListViewModel: viewModel)
+        let navigationController = NavigationBuilder.build(viewController: characterListViewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
