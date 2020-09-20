@@ -3,7 +3,7 @@
 This repository contains an iOS app that displays Harry Potter's characters:
 
 -   The main view displays list of characters names.
--   When clicking a certain character name, the character detail view is shown.
+-   When clicking a certain character name, the character's detail view is shown.
 
 Harry Potter characters are fetched from the [Potter API](https://www.potterapi.com/)
 
@@ -29,7 +29,7 @@ If the dependencies have not been resolved you can:
 ## How to run
 
 1. Open `HarryPotterApp.xcodeproj`
-1. Open `AppDelegate.swift` file and set your api key. You can get it by registering on the [Potter API](https://www.potterapi.com/)
+1. Open `AppDelegate.swift` file and set your api key. You can get your api key by registering on the [Potter API](https://www.potterapi.com/)
 1. Run the app.
 
 If you get any errors about dependencies, make sure you have resolved them first (see [Dependencies section](#Dependencies))
