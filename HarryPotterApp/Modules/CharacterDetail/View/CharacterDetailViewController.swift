@@ -9,23 +9,27 @@
 import UIKit
 
 class CharacterDetailViewController: UIViewController {
+    // Data
     private let characterDetailViewModel: CharacterDetailViewModelInterface
     private var details: [DetailInfo] {
         return characterDetailViewModel.character.value.getDetails()
     }
 
-    let tableView = UITableView()
-
+    // UI elements
     private let nameLabel = UILabel()
     private var houseImage = UIImageView()
     private let houseText = UILabel()
+    private let detailsTableView = UITableView()
 
+    // Font sizes
     private let titleFontSize: CGFloat = 30
     private let headingFontSize: CGFloat = 22
     private let textFontSize: CGFloat = 15
 
+    // Image size
     private let imageSize: CGFloat = 150
 
+    // Constraints constants
     private let topSpace: CGFloat = 20
     private let bottomSpace: CGFloat = -8
     private let leadingSpace: CGFloat = 20
@@ -49,23 +53,33 @@ class CharacterDetailViewController: UIViewController {
         configureUI()
     }
 
-    func configureUI() {
-        navigationItem.largeTitleDisplayMode = .never
+    private func configureUI() {
         view.backgroundColor = UIColor(named: "Background")
+        navigationItem.largeTitleDisplayMode = .never
+
         let character = characterDetailViewModel.character.value
         configureName(name: character.name)
         configureHouse(house: character.house)
         configureDetails()
     }
 
-    func configureName(name: String) {
+    private func configureName(name: String) {
         view.addSubview(nameLabel)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = name
+        configureNameLabel(text: name)
+        configureNameConstraints()
+    }
+
+    private func configureNameLabel(text: String) {
+        nameLabel.text = text
         nameLabel.numberOfLines = 0
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.font = UIFont.systemFont(ofSize: titleFontSize)
         nameLabel.textColor = UIColor(named: "Text")
+    }
+
+    private func configureNameConstraints() {
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+
         let constraints = [
             nameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
@@ -74,12 +88,35 @@ class CharacterDetailViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
 
-    func configureHouse(house: House?) {
-        let image = house?.getImage() ?? UIImage(named: "no-house")
-        houseImage = UIImageView(image: image)
+    private func configureHouse(house: House?) {
         view.addSubview(houseImage)
-        houseImage.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(houseText)
+
+        configureHouseImage(house: house)
+        configureHouseText(house: house)
+
+        configureHouseImageConstraints()
+        configureHouseTextConstraints()
+    }
+
+    private func configureHouseImage(house: House?) {
+        let image = house?.getImage() ?? UIImage(named: "no-house")
+        houseImage.image = image
         houseImage.contentMode = .scaleAspectFit
+    }
+
+    private func configureHouseText(house: House?) {
+        houseText.text = house?.getText() ?? "Character does not belong to any house"
+        houseText.textColor = UIColor(named: "Text")
+        houseText.font = UIFont.systemFont(ofSize: headingFontSize)
+        houseText.numberOfLines = 0
+        houseText.lineBreakMode = .byWordWrapping
+        houseText.textAlignment = .center
+    }
+
+    private func configureHouseImageConstraints() {
+        houseImage.translatesAutoresizingMaskIntoConstraints = false
+
         let constraints = [
             houseImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: titleToFirstItemSpace),
             houseImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor, constant: 0),
@@ -87,19 +124,11 @@ class CharacterDetailViewController: UIViewController {
             houseImage.heightAnchor.constraint(equalToConstant: imageSize)
         ]
         NSLayoutConstraint.activate(constraints)
-
-        configureHouseText(house: house)
     }
 
-    func configureHouseText(house: House?) {
-        view.addSubview(houseText)
-        houseText.text = house?.getText() ?? "Character does not belong to any house"
-        houseText.textColor = UIColor(named: "Text")
-        houseText.font = UIFont.systemFont(ofSize: headingFontSize)
-        houseText.numberOfLines = 0
-        houseText.lineBreakMode = .byWordWrapping
-        houseText.textAlignment = .center
+    private func configureHouseTextConstraints() {
         houseText.translatesAutoresizingMaskIntoConstraints = false
+
         let houseTextConstraints = [
             houseText.topAnchor.constraint(equalTo: houseImage.bottomAnchor, constant: imageToFirstTextSpace),
             houseText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: leadingSpace),
@@ -109,27 +138,35 @@ class CharacterDetailViewController: UIViewController {
         NSLayoutConstraint.activate(houseTextConstraints)
     }
 
-    func configureDetails() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.tableFooterView = UIView(frame: .zero)
-        tableView.backgroundColor = UIColor(named: "Background")
-        tableView.rowHeight = UITableView.automaticDimension
-        view.addSubview(tableView)
+    private func configureDetails() {
+        view.addSubview(detailsTableView)
+
+        configureDetailsTableView()
+        configureDetailsTableViewConstraints()
+    }
+
+    private func configureDetailsTableView() {
+        detailsTableView.tableFooterView = UIView(frame: .zero)
+        detailsTableView.backgroundColor = UIColor(named: "Background")
+        detailsTableView.rowHeight = UITableView.automaticDimension
+        detailsTableView.register(CharacterDetailCell.self, forCellReuseIdentifier: CharacterDetailCell.identifier)
+        detailsTableView.dataSource = self
+        detailsTableView.delegate = self
+        detailsTableView.separatorInset = .zero
+    }
+
+    private func configureDetailsTableViewConstraints() {
+        detailsTableView.translatesAutoresizingMaskIntoConstraints = false
 
         let constraints = [
-            tableView.topAnchor.constraint(equalTo: houseText.bottomAnchor, constant: itemsSpace),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
+            detailsTableView.topAnchor.constraint(equalTo: houseText.bottomAnchor, constant: itemsSpace),
+            detailsTableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
                                                constant: leadingSpace),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+            detailsTableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
                                                 constant: trailingSpace),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomSpace)
+            detailsTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomSpace)
         ]
         NSLayoutConstraint.activate(constraints)
-
-        tableView.register(CharacterDetailCell.self, forCellReuseIdentifier: CharacterDetailCell.identifier)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorInset = .zero
     }
 }
 

@@ -32,20 +32,32 @@ class CharacterDetailCell: UITableViewCell {
         }
     }
 
-    func configureUI() {
+    private func configureUI() {
+        contentView.backgroundColor = UIColor(named: "Background")
+
         guard let info = info else { return }
-        let itemTitleText = info.title
-        let descriptionText = info.description
 
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
 
-        contentView.backgroundColor = UIColor(named: "Background")
+        configureLabel(label: titleLabel, text: info.title, bold: true)
+        configureLabel(label: descriptionLabel, text: info.description)
+
+        configureConstraints()
+    }
+
+    private func configureLabel(label: UILabel, text: String, bold: Bool = false) {
+        label.text = text
+        label.font = bold ? UIFont.boldSystemFont(ofSize: textFontSize) : UIFont.systemFont(ofSize: textFontSize)
+        label.textColor = UIColor(named: "Text")
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.sizeToFit()
+    }
+
+    private func configureConstraints() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        configureLabel(label: titleLabel, text: itemTitleText, bold: true)
-        configureLabel(label: descriptionLabel, text: descriptionText)
 
         let constraints = [
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: topSpace),
@@ -61,14 +73,5 @@ class CharacterDetailCell: UITableViewCell {
             contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: cellHeight)
         ]
         NSLayoutConstraint.activate(constraints)
-    }
-
-    func configureLabel(label: UILabel, text: String, bold: Bool = false) {
-        label.text = text
-        label.font = bold ? UIFont.boldSystemFont(ofSize: textFontSize) : UIFont.systemFont(ofSize: textFontSize)
-        label.textColor = UIColor(named: "Text")
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.sizeToFit()
     }
 }
