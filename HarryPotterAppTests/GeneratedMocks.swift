@@ -1,4 +1,4 @@
-// MARK: - Mocks generated from file: HarryPotterApp/Networking/HarryPotterApiClientInterface.swift at 2020-09-20 09:17:32 +0000
+// MARK: - Mocks generated from file: HarryPotterApp/Networking/HarryPotterApiClientInterface.swift at 2020-09-20 09:26:02 +0000
 
 //
 //  HarryPotterApiClientInterface.swift
