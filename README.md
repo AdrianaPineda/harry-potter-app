@@ -7,7 +7,7 @@ This repository contains an iOS app that displays Harry Potter's characters:
 
 Harry Potter characters are fetched from the [Potter API](https://www.potterapi.com/)
 
-![app gif](./harry-potter-app.gif)
+![app gif](./app.gif)
 
 ## Architecture
 
